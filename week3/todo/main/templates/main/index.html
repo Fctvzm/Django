@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+	<button class="btn btn-success" style="margin-top: 20px; margin-bottom: 20px;">Add Task</button>
+	{% if button_type != 'completed' %}
+		<h1>Completed tasks</h1>
+	{% else %}
+		<h1>Tasks</h1>
+	{% endif %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Task</th>
+				<th scope="col">Created</th>
+				<th scope="col">Due on</th>
+				<th scope="col">Owner</th>
+				<th scope="col">Mark</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for task in task_list %}
+				<tr>
+					<th scope="row">{{ forloop.counter }}</th>
+					<td>
+						<a href="/main/{{ task.id }}/">{{task.task_name}}</a>
+					</td>
+					<td>{{task.created_date}}</td>
+					<td>{{task.dueon_date}}</td>
+					<td>{{task.owner}}</td>
+					<td>
+						<button class="btn btn-info">{{task.get_status_display}}</button>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<button class="btn btn-warning" style="margin-right: 15px;">View {{button_type}} tasks</button>
+	<button class="btn btn-danger">Delete this list</button>
+{% endblock %}
