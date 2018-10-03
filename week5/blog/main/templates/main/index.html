@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+
+<div class="list-group">
+	{% for post in post_list %}
+		<a href = "{% url 'main:detail' post_id=post.id %}" 
+		class="list-group-item list-group-item-action">{{post.title}}</a>
+	{% endfor %}
+</div>
+
+{% endblock %}

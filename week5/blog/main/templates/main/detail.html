@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block body %}
+
+<div class="content">
+	<h1>{{post.title}}</h1>
+	<h2>{{post.author}}</h2>
+	<p>{{post.main_text}}</p>
+	<ul class="list-group">
+		{% for comment in comments %}
+			<li class="list-group-item">{{comment.content}}</li>
+		{% endfor %}
+	</ul>
+</div>
+
+
+{% endblock %}
