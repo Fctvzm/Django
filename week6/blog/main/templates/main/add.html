@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	{% if comment %}
+		<h1>Leave a comment</h1>
+	{% else %}
+		<h1>Create a Post</h1>
+	{% endif %}
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+
+{% endblock %}

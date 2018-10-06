@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	<a href = "{% url 'main:add' %}" class="add-task-button">Add Task</a>
+	{% if button_type != 'completed' %}
+		<h1>Completed tasks</h1>
+		{% url 'main:index' as main_url %}
+	{% else %}
+		<h1>Tasks</h1>
+		{% url 'main:completed' as main_url %}
+	{% endif %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Task</th>
+				<th scope="col">Created</th>
+				<th scope="col">Due on</th>
+				<th scope="col">Owner</th>
+				<th scope="col">Mark</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for task in task_list %}
+				<tr>
+					<th scope="row">{{ forloop.counter }}</th>
+					<td>{{task.task_name}}</td>
+					<td>{{task.created_date}}</td>
+					<td>{{task.dueon_date}}</td>
+					<td>{{task.owner}}</td>
+					<td>
+						<button class="btn btn-info">{{task.get_status_display}}</button>
+					</td>
+					<td>
+						<a href = "{% url 'main:delete' task_id=task.id %}" class="delete-task-button">Delete Task</a>
+					</td>
+					<td>
+						<a href = "{% url 'main:change' task_id=task.id %}" class="change-task-button">Change Task</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<a href="{{main_url}}" class="completed-task-button">
+		View {{button_type}} tasks
+	</a>
+{% endblock %}
