@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Dish</th>
+				<th scope="col">Description</th>
+				<th scope="col">Price</th>
+				<th scope="col">Restaurant</th>
+				<th scope="col">User</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for dish in object_list %}
+				<tr>
+					<th scope="row">{{ forloop.counter }}</th>
+					<td>
+						<a href="{{dish.get_absolute_url}}">{{dish.name}}</a>
+					</td>
+					<td>{{dish.description}}</td>
+					<td>{{dish.price}}</td>
+					<td>{{dish.restaurant}}</td>
+					<td>{{dish.user}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

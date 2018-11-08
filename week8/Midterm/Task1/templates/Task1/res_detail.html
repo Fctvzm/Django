@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <h1>Title: {{ object.name }}</h1>
+
+  <p><strong>Telephone:</strong> {{ object.telephone }}</p>
+  <p><strong>Number:</strong> {{ object.number }}</p>
+  <p><strong>City:</strong> {{ object.city }}</p> 
+  <p><strong>User:</strong> {{ object.user }}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Dishes</h4>
+
+    {% for dish in object.dish_set.all %}
+    <hr>
+    <p><strong>Name:</strong> {{dish.name}}</p>
+    <p><strong>Description:</strong> {{dish.description}}</p>
+    <p><strong>Price:</strong> {{dish.price}}</p>
+    {% endfor %}
+  </div>
+{% endblock %}

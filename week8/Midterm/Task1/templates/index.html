@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+	{% if user.is_authenticated %}
+		<a href = "{% url 'res_add' %}" class="add-res-button">Add Restaurant</a>
+	{% endif %}
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Restaurant</th>
+				<th scope="col">Number</th>
+				<th scope="col">Telephone</th>
+				<th scope="col">City</th>
+				<th scope="col">User</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for res in object_list %}
+				<tr>
+					<th scope="row">{{ forloop.counter }}</th>
+					<td>
+						<a href="{{res.get_absolute_url}}">{{res.name}}</a>
+					</td>
+					<td>{{res.number}}</td>
+					<td>{{res.telephone}}</td>
+					<td>{{res.user}}</td>
+					<td>
+						<a href = "{% url 'res_delete' pk=res.id %}" class="delete-res-button">Delete Restaurant</a>
+					</td>
+					<td>
+						<a href = "{% url 'res_change' pk=res.id %}" class="change-res-button">Change Restaurant</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
