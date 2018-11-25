@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<div class="content">
+	<h1>{{object.title}}</h1>
+	<h2>{{object.author}}</h2>
+	<p>{{object.main_text}}</p>
+	<a href="{% url 'addComment' pk=object.id %}" class="add-task-button">Add Comment</a>
+	<div style="margin-left:20px;margin-top:20px">
+		<ul class="list-group">
+			{% for comment in object.comment_set.all %}
+				<li class="list-group-item">
+					{% if comment.user == None %}
+						<h2>Anonymous</h2>
+					{% else %}
+						<h2>{{comment.user}}</h2>
+					{% endif %}
+					<p>{{comment.content}}</p>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>
+
+
+{% endblock %}

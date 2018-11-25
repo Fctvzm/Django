@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo</title>
+    <link rel = "stylesheet" type="text/css" href = "{% static 'main/bootstrap/css/bootstrap.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-dark bg-dark">
+    		<a class="navbar-brand" href="{% url 'main:index' %}">Django TODO</a>
+
+			<ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+
+		</nav>
+
+
+		{% block body %}
+		{% endblock %}
+	</div>
+
+</body>
+</html>
